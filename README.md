@@ -3,6 +3,11 @@ Welcome to the repository for our Project Management System. Here you will find 
 Avalonia to develop the User Interface, with NUnit to create basic unit tests to ensure a quality product. 
 
 ## Table of Contents
+- [Team Members](#team-members)
+- [Project Description](#project-description)
+- [Environment](#environment)
+- [Executing the Application](#executing-the-application)
+- [Documentation](#documentation)
 
 ## Team Members
 - Kahmin Keller
@@ -17,7 +22,7 @@ functional and non-functional requirements, allow monitoring of project efforts 
 many of their software development projects. Whether those projects be academic, personal, or industry related, our system will help supervise the notoriously difficult software development process. 
 For a more detailed look at the project, please take a look at our [Comprehensive Plan](./documentation/ComprehensivePlan.pdf). 
 
-## Enviornment
+## Environment
 ### This is a cross-platform application that will work on Windows and Mac OS. 
 
 To Prepeare your enviornment to execute this application:
