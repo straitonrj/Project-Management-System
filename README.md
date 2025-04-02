@@ -36,8 +36,8 @@ To execute the application follow these steps:
 - Open the command prompt
 
 ## Documentation
-- [Quick Plan](./documentation/QuickPlan.pdf)
-- [Comprehensive Plan](./documentation/ComprehensivePlan.pdf)
+- [Quick Plan](./Documents/QuickPlan.pdf)
+- [Comprehensive Plan](./Documents/ComprehensivePlan.pdf)
 
 ## Final Video Presentation
 
