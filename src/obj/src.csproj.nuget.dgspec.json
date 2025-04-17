@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\final\\Projects\\project_management_system\\src\\src.csproj": {}
+    "C:\\Users\\strai\\RiderProjects\\SoftwareProjectManagement\\Project-Management-System\\src\\src.csproj": {}
   },
   "projects": {
-    "C:\\Users\\final\\Projects\\project_management_system\\src\\src.csproj": {
+    "C:\\Users\\strai\\RiderProjects\\SoftwareProjectManagement\\Project-Management-System\\src\\src.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\final\\Projects\\project_management_system\\src\\src.csproj",
+        "projectUniqueName": "C:\\Users\\strai\\RiderProjects\\SoftwareProjectManagement\\Project-Management-System\\src\\src.csproj",
         "projectName": "src",
-        "projectPath": "C:\\Users\\final\\Projects\\project_management_system\\src\\src.csproj",
-        "packagesPath": "C:\\Users\\final\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\final\\Projects\\project_management_system\\src\\obj\\",
+        "projectPath": "C:\\Users\\strai\\RiderProjects\\SoftwareProjectManagement\\Project-Management-System\\src\\src.csproj",
+        "packagesPath": "C:\\Users\\strai\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\strai\\RiderProjects\\SoftwareProjectManagement\\Project-Management-System\\src\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\final\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\strai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,11 +36,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -84,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\strai\\.dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
