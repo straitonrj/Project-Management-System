@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "OHcMvESHW1ZIZtpeHJATVgrWx4vx/iHJRV9Na7wjzzAI5Z1yn0sH2CT7HEmTWYQA2wYZWK5tyZolLz2Rz5WmYA==",
+  "dgSpecHash": "DxN2m6vvfqHUI4Gh0jY2YTl56ERaRIMLDs1bLgnz+K+r5VBQgiSs3hyhqVlFBJG0rAbpIu1lM0ZBARQ38Xoj7A==",
   "success": true,
   "projectFilePath": "C:\\Users\\strai\\RiderProjects\\SoftwareProjectManagement\\Project-Management-System\\src\\src.csproj",
   "expectedPackageFiles": [
@@ -27,12 +27,19 @@
     "C:\\Users\\strai\\.nuget\\packages\\harfbuzzsharp.nativeassets.webassembly\\7.3.0.3-preview.2.2\\harfbuzzsharp.nativeassets.webassembly.7.3.0.3-preview.2.2.nupkg.sha512",
     "C:\\Users\\strai\\.nuget\\packages\\harfbuzzsharp.nativeassets.win32\\7.3.0.2\\harfbuzzsharp.nativeassets.win32.7.3.0.2.nupkg.sha512",
     "C:\\Users\\strai\\.nuget\\packages\\microcom.runtime\\0.11.0\\microcom.runtime.0.11.0.nupkg.sha512",
+    "C:\\Users\\strai\\.nuget\\packages\\microsoft.data.sqlite\\9.0.4\\microsoft.data.sqlite.9.0.4.nupkg.sha512",
+    "C:\\Users\\strai\\.nuget\\packages\\microsoft.data.sqlite.core\\9.0.4\\microsoft.data.sqlite.core.9.0.4.nupkg.sha512",
     "C:\\Users\\strai\\.nuget\\packages\\skiasharp\\2.88.8\\skiasharp.2.88.8.nupkg.sha512",
     "C:\\Users\\strai\\.nuget\\packages\\skiasharp.nativeassets.linux\\2.88.8\\skiasharp.nativeassets.linux.2.88.8.nupkg.sha512",
     "C:\\Users\\strai\\.nuget\\packages\\skiasharp.nativeassets.macos\\2.88.8\\skiasharp.nativeassets.macos.2.88.8.nupkg.sha512",
     "C:\\Users\\strai\\.nuget\\packages\\skiasharp.nativeassets.webassembly\\2.88.8\\skiasharp.nativeassets.webassembly.2.88.8.nupkg.sha512",
     "C:\\Users\\strai\\.nuget\\packages\\skiasharp.nativeassets.win32\\2.88.8\\skiasharp.nativeassets.win32.2.88.8.nupkg.sha512",
+    "C:\\Users\\strai\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.10\\sqlitepclraw.bundle_e_sqlite3.2.1.10.nupkg.sha512",
+    "C:\\Users\\strai\\.nuget\\packages\\sqlitepclraw.core\\2.1.10\\sqlitepclraw.core.2.1.10.nupkg.sha512",
+    "C:\\Users\\strai\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.10\\sqlitepclraw.lib.e_sqlite3.2.1.10.nupkg.sha512",
+    "C:\\Users\\strai\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.10\\sqlitepclraw.provider.e_sqlite3.2.1.10.nupkg.sha512",
     "C:\\Users\\strai\\.nuget\\packages\\system.io.pipelines\\8.0.0\\system.io.pipelines.8.0.0.nupkg.sha512",
+    "C:\\Users\\strai\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\strai\\.nuget\\packages\\tmds.dbus.protocol\\0.20.0\\tmds.dbus.protocol.0.20.0.nupkg.sha512"
   ],
   "logs": []

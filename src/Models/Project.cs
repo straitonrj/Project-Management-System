@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-
+using Microsoft.Data.Sqlite;
 namespace src.Models;
 
 public class Project
@@ -16,6 +16,7 @@ public class Project
     private ArrayList FunctionalRequirements = new ArrayList();
     private ArrayList NonFunctionalRequirements = new ArrayList();
     private ArrayList RiskList = new ArrayList();
+    private SqliteConnection sqliteConnection;
 
     public Project(int tempID, string tempName, string tempDescription)
     {
@@ -28,24 +29,59 @@ public class Project
     {
         TeamMembers.Add(tempEmployee);
     }
-    //Print out TeamMembers and relevant info
-    public string[] GetTeamMembers()
+    
+    //Fetching relevant data from database for front-end
+    //SQL method to avoid redundancy for getting info from tables using project id
+    ArrayList DatabaseCall(string sql)
     {
-        string[] TeamList;
-        //Only run if TeamMembers has any elements
-        if (TeamMembers.Count != 0)
+        ArrayList tempArrayList = new ArrayList();
+        try
         {
-            TeamList = new string[TeamMembers.Count];
-            for (int i = 0; i < TeamMembers.Count; i++)
+            using var connection = new SqliteConnection($"Data Source=projectDB");
+            connection.Open();
+            
+            using var command = new SqliteCommand(sql,connection);
+            command.Parameters.AddWithValue("@PROJECTID",ID);
+            
+            using var reader = command.ExecuteReader();
+            if (reader.HasRows)
             {
-                TeamList[i] = TeamMembers[i].ToString();
-            }
+                while (reader.Read())
+                {
+                    tempArrayList.Add(reader.GetString(0));
 
-            return TeamList;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
         }
 
-        //Don't know what else to return, maybe checking if the Arraylist is empty should happen before the method gets called
-        TeamList = new string[] { "No Team members" };
-        return TeamList;
+        return tempArrayList;
     }
+    public ArrayList GetTeamMembers()
+    {
+        var sql = "Select * from EMPLOYEE where PROJECTID = @PROJECTID";
+        return DatabaseCall(sql);
+    }
+    public ArrayList GetFunctionalReqs()
+    {
+        var sql = "Select * from FREQUIREMENT where PROJECTID = @PROJECTID";
+        return DatabaseCall(sql);
+    }
+    public ArrayList GetNonFunctionalReqs()
+    {
+        var sql = "Select * from NFRequirement where PROJECTID = @PROJECTID";
+        return DatabaseCall(sql);
+    }
+    public ArrayList GetRisk()
+    {
+        var sql = "Select * from RISK where PROJECTID = @PROJECTID";
+        return DatabaseCall(sql);
+    }
+    
+    //Inserting values into the database
+    //SQL method to Query the database
 }

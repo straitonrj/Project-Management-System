@@ -65,6 +65,10 @@
             "CommunityToolkit.Mvvm": {
               "target": "Package",
               "version": "[8.2.1, )"
+            },
+            "Microsoft.Data.SQlite": {
+              "target": "Package",
+              "version": "[9.0.4, )"
             }
           },
           "imports": [
