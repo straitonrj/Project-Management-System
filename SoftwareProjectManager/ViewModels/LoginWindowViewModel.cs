@@ -10,13 +10,11 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using ReactiveUI;
 using SoftwareProjectManager.Views;
-using src.Models;
 
 namespace SoftwareProjectManager.ViewModels;
 
 public class LoginWindowViewModel : ViewModelBase
 {
-    public ObservableCollection<Employee?> Users { get; } = new();
     private string? username = "pcox";
     private string? pword = "password";
     public string? _inputUsername;

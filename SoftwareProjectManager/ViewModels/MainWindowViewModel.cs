@@ -8,7 +8,6 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using ReactiveUI;
 using SoftwareProjectManager.Views;
-using src.Models;
 namespace SoftwareProjectManager.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
