@@ -2,9 +2,12 @@ using System;
 using System.Collections.ObjectModel;
 using System.Reactive;
 using System.Reactive.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Xml;
 using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using ReactiveUI;
 using SoftwareProjectManager.Views;
 using src.Models;
@@ -21,9 +24,7 @@ public class LoginWindowViewModel : ViewModelBase
 
     
     public Interaction<LoginWindowViewModel, MainWindowViewModel> CloseWindowInteraction { get; } = new();
-
-    public ReactiveCommand<Unit, Unit> CloseCommand { get; set; }
-
+    
     public string? InputUsername
     {
         get => _inputUsername;
@@ -47,15 +48,32 @@ public class LoginWindowViewModel : ViewModelBase
         {
             if (_inputUsername == username && _inputPassword == pword)
             {
+                /*
                 Console.WriteLine("Login successful");
                 var window = new MainWindow();
                 window.Show();
+                */
+                
+                
+                var mainWindow = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
+                if (mainWindow != null)
+                {
+                    Console.WriteLine(mainWindow.Title);
+                    mainWindow.Hide();
+                }
+
+                
+                if (Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+                {
+                    desktop.MainWindow = new MainWindow()
+                    {
+                        DataContext = new MainWindowViewModel()
+                    };
+                    
+                    desktop.MainWindow.Show();
+                }
             }
             
-            CloseCommand = ReactiveCommand.CreateFromTask(async () =>
-            {
-                await CloseWindowInteraction.Handle(new LoginWindowViewModel());
-            });
         });
 
     }

@@ -1746,11 +1746,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\10jon\\OneDrive\\Desktop\\CS Labs & Assignments\\OperatingSystems\\SoftwareProjectManager\\SoftwareProjectManager\\SoftwareProjectManager.csproj",
+      "projectUniqueName": "C:\\Users\\10jon\\OneDrive\\Desktop\\CS Labs & Assignments\\ProjectManagement\\Project-Management-System\\SoftwareProjectManager\\SoftwareProjectManager.csproj",
       "projectName": "SoftwareProjectManager",
-      "projectPath": "C:\\Users\\10jon\\OneDrive\\Desktop\\CS Labs & Assignments\\OperatingSystems\\SoftwareProjectManager\\SoftwareProjectManager\\SoftwareProjectManager.csproj",
+      "projectPath": "C:\\Users\\10jon\\OneDrive\\Desktop\\CS Labs & Assignments\\ProjectManagement\\Project-Management-System\\SoftwareProjectManager\\SoftwareProjectManager.csproj",
       "packagesPath": "C:\\Users\\10jon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\10jon\\OneDrive\\Desktop\\CS Labs & Assignments\\OperatingSystems\\SoftwareProjectManager\\SoftwareProjectManager\\obj\\",
+      "outputPath": "C:\\Users\\10jon\\OneDrive\\Desktop\\CS Labs & Assignments\\ProjectManagement\\Project-Management-System\\SoftwareProjectManager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\10jon\\AppData\\Roaming\\NuGet\\NuGet.Config",

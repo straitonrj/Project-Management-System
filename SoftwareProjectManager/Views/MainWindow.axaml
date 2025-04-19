@@ -22,9 +22,11 @@
     </Design.DataContext>
     
     
-    <Panel>
-        <TextBlock Text="SPM" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="Log In"/>
+    <Panel Margin = "20">
+        <TextBlock Text="Software Project Manager" HorizontalAlignment="Left" 
+                   VerticalAlignment="Top" FontSize="24"/>
+        <Button Content="Log Out" VerticalAlignment="Top" HorizontalAlignment="Right" 
+                Background="DarkBlue" CornerRadius="45 20 45 20" Command="{Binding LogOut}"/>
     </Panel>
 
     

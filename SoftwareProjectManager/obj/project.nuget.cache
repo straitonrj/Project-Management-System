@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3ReiZ4X+3dk=",
+  "dgSpecHash": "RPfozHdReKY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\10jon\\OneDrive\\Desktop\\CS Labs & Assignments\\OperatingSystems\\SoftwareProjectManager\\SoftwareProjectManager\\SoftwareProjectManager.csproj",
+  "projectFilePath": "C:\\Users\\10jon\\OneDrive\\Desktop\\CS Labs & Assignments\\ProjectManagement\\Project-Management-System\\SoftwareProjectManager\\SoftwareProjectManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\10jon\\.nuget\\packages\\avalonia\\11.2.1\\avalonia.11.2.1.nupkg.sha512",
     "C:\\Users\\10jon\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.22045.20230930\\avalonia.angle.windows.natives.2.1.22045.20230930.nupkg.sha512",

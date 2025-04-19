@@ -14,9 +14,5 @@ public partial class LoginWindow : Window
         var vm = new LoginWindowViewModel();
         DataContext = vm;
         
-        vm.CloseWindowInteraction.RegisterHandler(interaction =>
-        {
-            Close();
-        });
     }
 }

@@ -15,18 +15,18 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SoftwareProjectManager
-build_property.ProjectDir = C:\Users\10jon\OneDrive\Desktop\CS Labs & Assignments\OperatingSystems\SoftwareProjectManager\SoftwareProjectManager\
+build_property.ProjectDir = C:\Users\10jon\OneDrive\Desktop\CS Labs & Assignments\ProjectManagement\Project-Management-System\SoftwareProjectManager\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[C:/Users/10jon/OneDrive/Desktop/CS Labs & Assignments/OperatingSystems/SoftwareProjectManager/SoftwareProjectManager/App.axaml]
+[C:/Users/10jon/OneDrive/Desktop/CS Labs & Assignments/ProjectManagement/Project-Management-System/SoftwareProjectManager/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/10jon/OneDrive/Desktop/CS Labs & Assignments/OperatingSystems/SoftwareProjectManager/SoftwareProjectManager/Views/LoginWindow.axaml]
+[C:/Users/10jon/OneDrive/Desktop/CS Labs & Assignments/ProjectManagement/Project-Management-System/SoftwareProjectManager/Views/LoginWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/10jon/OneDrive/Desktop/CS Labs & Assignments/OperatingSystems/SoftwareProjectManager/SoftwareProjectManager/Views/MainWindow.axaml]
+[C:/Users/10jon/OneDrive/Desktop/CS Labs & Assignments/ProjectManagement/Project-Management-System/SoftwareProjectManager/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/10jon/OneDrive/Desktop/CS Labs & Assignments/OperatingSystems/SoftwareProjectManager/SoftwareProjectManager/Views/WelcomeView.axaml]
+[C:/Users/10jon/OneDrive/Desktop/CS Labs & Assignments/ProjectManagement/Project-Management-System/SoftwareProjectManager/Views/WelcomeView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

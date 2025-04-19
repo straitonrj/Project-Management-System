@@ -3,6 +3,7 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="SoftwareProjectManager/App.axaml" value="SoftwareProjectManager/SoftwareProjectManager.csproj" />
         <entry key="SoftwareProjectManager/Views/LoginWindow.axaml" value="SoftwareProjectManager/SoftwareProjectManager.csproj" />
         <entry key="SoftwareProjectManager/Views/MainWindow.axaml" value="SoftwareProjectManager/SoftwareProjectManager.csproj" />
         <entry key="SoftwareProjectManager/Views/WelcomeView.axaml" value="SoftwareProjectManager/SoftwareProjectManager.csproj" />

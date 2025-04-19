@@ -8,6 +8,10 @@
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
+             
+    <Application.Resources>
+        <FontFamily x:Key="Nunito">/Assets/#Nunito</FontFamily>
+    </Application.Resources>
   
     <Application.Styles>
         <FluentTheme />
