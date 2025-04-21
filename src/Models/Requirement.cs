@@ -58,6 +58,11 @@ public class Requirement
         return Description;
     }
 
+    public bool GetFinished()
+    {
+        return Finished;
+    }
+
     public void SetID(int tempID)
     {
         ID = tempID;

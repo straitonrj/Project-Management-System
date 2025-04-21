@@ -6,9 +6,10 @@ namespace src.Models;
 public class Project
 {
     //Attributes
-    private int ID { get; set; }
-    private string Name { get; set; }
-    private string Description { get; set; }
+    private int ID;
+    private string Name;
+
+    private string Description;
     //Team members & manager
     private Employee ProjectManager { get; set; }
     private ArrayList TeamMembers = new ArrayList();
@@ -25,9 +26,34 @@ public class Project
         Description = tempDescription;
     }
 
-    public void AddEmployee(Employee tempEmployee)
+    public int GetID()
     {
-        TeamMembers.Add(tempEmployee);
+        return ID;
+    }
+
+    public string GetName()
+    {
+        return Name;
+    }
+
+    public string GetDescription()
+    {
+        return Description;
+    }
+
+    public void SetID(int temp)
+    {
+        ID = temp;
+    }
+
+    public void SetName(string temp)
+    {
+        Name = temp;
+    }
+
+    public void SetDescription(string temp)
+    {
+        Description = temp;
     }
     
     //Fetching relevant data from database for front-end
@@ -83,5 +109,98 @@ public class Project
     }
     
     //Inserting values into the database
-    //SQL method to Query the database
+    void AddEmployee(Employee temp)
+    {
+        var sql = "INSERT INTO EMPLOYEE " +
+                  "VALUES (@ID, @NAME, @JOB_TITLE, @PROJECTID)";
+        try
+        {
+            using var connection = new SqliteConnection($"Data Source=projectDB");
+            connection.Open();
+
+            using var command = new SqliteCommand(sql, connection);
+            command.Parameters.AddWithValue("@PROJECTID", ID);
+            command.Parameters.AddWithValue("@ID", temp.GetID());
+            command.Parameters.AddWithValue("@NAME", temp.GetName());
+            command.Parameters.AddWithValue("JOB_TITLE", temp.GetJobTitle());
+
+            command.ExecuteNonQuery();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    void AddFunctionalReq(Requirement temp)
+    {
+        var sql = "INSERT INTO FREQUIREMENT" +
+                  "VALUES (@ID,@NAME, @DESCR, @STATUS, @PRIOIRTY, @PROJECTID)";
+        try
+        {
+            using var connection = new SqliteConnection($"Data Source=projectDB");
+            connection.Open();
+
+            using var command = new SqliteCommand(sql, connection);
+            command.Parameters.AddWithValue("@PROJECTID", ID);
+            command.Parameters.AddWithValue("@ID", temp.GetID());
+            command.Parameters.AddWithValue("@NAME", temp.GetName());
+            command.Parameters.AddWithValue("@DESCR", temp.GetDescription());
+            command.Parameters.AddWithValue("@STATUS", temp.GetFinished());
+            command.Parameters.AddWithValue("@PRIORITY", temp.GetPriority());
+
+            command.ExecuteNonQuery();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    void AddNonFunctionalReq(Requirement temp)
+    {
+        var sql = "INSERT INTO NFREQUIREMENT" +
+                  "VALUES (@ID,@NAME, @DESCR, @STATUS, @PRIOIRTY, @PROJECTID)";
+        try
+        {
+            using var connection = new SqliteConnection($"Data Source=projectDB");
+            connection.Open();
+
+            using var command = new SqliteCommand(sql, connection);
+            command.Parameters.AddWithValue("@PROJECTID", ID);
+            command.Parameters.AddWithValue("@ID", temp.GetID());
+            command.Parameters.AddWithValue("@NAME", temp.GetName());
+            command.Parameters.AddWithValue("@DESCR", temp.GetDescription());
+            command.Parameters.AddWithValue("@STATUS", temp.GetFinished());
+            command.Parameters.AddWithValue("@PRIORITY", temp.GetPriority());
+
+            command.ExecuteNonQuery();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    void AddRisk(Risk temp)
+    {
+        var sql = "INSERT INTO RISK" +
+                  "VALUES (@ID,@NAME, @DESCR, @PROJECTID)";
+        try
+        {
+            using var connection = new SqliteConnection($"Data Source=projectDB");
+            connection.Open();
+
+            using var command = new SqliteCommand(sql, connection);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    
 }

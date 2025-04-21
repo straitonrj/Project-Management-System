@@ -2,17 +2,44 @@ namespace src.Models;
 
 public class Risk
 {
-    private string Name { get; set;}
-    private string Description { get; set;}
-    private string Status { get; set;}
-    private int Priority { get; set; }
+    private int ID;
+    private string Name;
+    private string Description;
 
-    public Risk(string tempName, string tempDescription, string tempStatus, int tempPriority)
+    public Risk(int tempID, string tempName, string tempDescription)
     {
         Name = tempName;
         Description = tempDescription;
-        Status = tempStatus;
-        Priority = tempPriority;
+    }
+
+    public int GetID()
+    {
+        return ID;
+    }
+
+    public string GetName()
+    {
+        return Name;
+    }
+
+    public string GetDescription()
+    {
+        return Description;
+    }
+
+    public void SetID(int temp)
+    {
+        ID = temp;
+    }
+
+    public void SetName(string temp)
+    {
+        Name = temp;
+    }
+
+    public void SetDescription(string temp)
+    {
+        Description = temp;
     }
 
 }
