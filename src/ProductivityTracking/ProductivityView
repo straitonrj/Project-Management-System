@@ -1,58 +1,52 @@
 using System;
 using System.Windows.Forms;
-using ProjectMgmtApp;  // ViewModel namespace — change if your namespace differs
+using ProjectMgmtApp;  // ViewModel namespace.****************** may be changed************************
 
 namespace ProjectMgmtApp
 {
+    
     public partial class ProductivityView : Form
     {
-        // ViewModel instance that handles DB interaction and logic
+        // ViewModel instance for interacting with DB and logic
         private ProductivityViewModel viewModel = new ProductivityViewModel();
 
-        // Constructor: sets up UI and pre-loads any saved productivity entries
+        // Constructor: initializes UI and loads initial data
         public ProductivityView()
         {
-            InitializeComponent();  // Load WinForms designer elements
-            LoadData();             // Populate DataGridView with current records
+            InitializeComponent();  // Load controls from Designer
+            LoadData();             // Display current records in the grid
         }
 
-        // Load all productivity records from the database and show in DataGridView
+        // Loads all records from DB into the DataGridView
         private void LoadData()
         {
-            dataGridView1.DataSource = viewModel.GetAllEntries(); // Pulls from SQLite via ViewModel
+            dataGridView1.DataSource = viewModel.GetAllEntries(); // Display entries
         }
 
-        // This is triggered when the "Add Entry" button is clicked
+        // Adds a new entry to the database when the button is clicked
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            try
+            // Build a new entry object using the text field inputs
+            var entry = new ProductivityEntry
             {
-                // Create a new productivity entry using input from the form
-                var entry = new ProductivityEntry
-                {
-                    Project = txtProject.Text,
-                    PhaseName = txtPhase.Text,
-                    WeeklyHours = int.Parse(txtWeeklyHours.Text),
-                    TotalHours = int.Parse(txtTotalHours.Text),
-                    Description = txtDescription.Text
-                };
+                Project = txtProject.Text,
+                PhaseName = txtPhase.Text,
+                WeeklyHours = int.Parse(txtWeeklyHours.Text),
+                TotalHours = int.Parse(txtTotalHours.Text),
+                Description = txtDescription.Text
+            };
 
-                // Save entry to the database (will be tied to UserID = 1 internally)
-                viewModel.AddEntry(entry);
+            // Call ViewModel to save the new entry to the database
+            viewModel.AddEntry(entry);
 
-                // Reload data grid to include the new entry
-                LoadData();
+            // Refresh grid to show the newly added entry
+            LoadData();
 
-                // Clear input fields for the next use
-                ClearInputs();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to add entry. Check your input.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            // Clear form inputs for the next entry
+            ClearInputs();
         }
 
-        // Utility function to reset form fields to blank/zero
+        // Clears all text boxes to their default state
         private void ClearInputs()
         {
             txtProject.Clear();
@@ -63,4 +57,3 @@ namespace ProjectMgmtApp
         }
     }
 }
-
