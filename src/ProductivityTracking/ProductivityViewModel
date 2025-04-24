@@ -1,0 +1,75 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
+
+namespace ProjectMgmtApp //***************may be changed***************************
+{
+    // This class represents each productivity entry (record)
+    public class ProductivityEntry
+    {
+        public string Project { get; set; }        // Project title/name
+        public string PhaseName { get; set; }      // Phase (e.g., Design, Testing)
+        public int WeeklyHours { get; set; }       // Hours logged this week
+        public int TotalHours { get; set; }        // Total hours logged so far
+        public string Description { get; set; }    // Optional description
+    }
+
+    // This class handles database operations like GET and ADD
+    public class ProductivityViewModel
+    {
+        // Connection string to MS Access database (adjust the file path if needed)
+        private string _connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=ProjectDatabase.accdb;";
+
+        // Fetches all productivity entries from the database
+        public List<ProductivityEntry> GetAllEntries()
+        {
+            var entries = new List<ProductivityEntry>();
+
+            // Open database connection and run SELECT query
+            using (OleDbConnection connection = new OleDbConnection(_connectionString))
+            {
+                string query = "SELECT * FROM ProductivityTracking";
+                OleDbCommand cmd = new OleDbCommand(query, connection);
+                connection.Open();
+
+                // Read each row and build the ProductivityEntry list
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    entries.Add(new ProductivityEntry
+                    {
+                        Project = reader["Project"].ToString(),
+                        PhaseName = reader["PhaseName"].ToString(),
+                        WeeklyHours = Convert.ToInt32(reader["WeeklyHours"]),
+                        TotalHours = Convert.ToInt32(reader["TotalHours"]),
+                        Description = reader["Description"].ToString()
+                    });
+                }
+            }
+            return entries; // Return the list of entries
+        }
+
+        // Inserts a new productivity entry into the database
+        public void AddEntry(ProductivityEntry entry)
+        {
+            using (OleDbConnection connection = new OleDbConnection(_connectionString))
+            {
+                // SQL INSERT command with placeholders (?)
+                string query = "INSERT INTO ProductivityTracking (Project, PhaseName, WeeklyHours, TotalHours, Description) VALUES (?, ?, ?, ?, ?)";
+                OleDbCommand cmd = new OleDbCommand(query, connection);
+
+                // Bind parameters to avoid SQL injection and insert values properly
+                cmd.Parameters.AddWithValue("?", entry.Project);
+                cmd.Parameters.AddWithValue("?", entry.PhaseName);
+                cmd.Parameters.AddWithValue("?", entry.WeeklyHours);
+                cmd.Parameters.AddWithValue("?", entry.TotalHours);
+                cmd.Parameters.AddWithValue("?", entry.Description);
+
+                // Open connection and execute command
+                connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+    }
+}

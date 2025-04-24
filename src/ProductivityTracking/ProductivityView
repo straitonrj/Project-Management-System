@@ -1,0 +1,59 @@
+using System;
+using System.Windows.Forms;
+using ProjectMgmtApp;  // ViewModel namespace.****************** may be changed************************
+
+namespace ProjectMgmtApp
+{
+    
+    public partial class ProductivityView : Form
+    {
+        // ViewModel instance for interacting with DB and logic
+        private ProductivityViewModel viewModel = new ProductivityViewModel();
+
+        // Constructor: initializes UI and loads initial data
+        public ProductivityView()
+        {
+            InitializeComponent();  // Load controls from Designer
+            LoadData();             // Display current records in the grid
+        }
+
+        // Loads all records from DB into the DataGridView
+        private void LoadData()
+        {
+            dataGridView1.DataSource = viewModel.GetAllEntries(); // Display entries
+        }
+
+        // Adds a new entry to the database when the button is clicked
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            // Build a new entry object using the text field inputs
+            var entry = new ProductivityEntry
+            {
+                Project = txtProject.Text,
+                PhaseName = txtPhase.Text,
+                WeeklyHours = int.Parse(txtWeeklyHours.Text),
+                TotalHours = int.Parse(txtTotalHours.Text),
+                Description = txtDescription.Text
+            };
+
+            // Call ViewModel to save the new entry to the database
+            viewModel.AddEntry(entry);
+
+            // Refresh grid to show the newly added entry
+            LoadData();
+
+            // Clear form inputs for the next entry
+            ClearInputs();
+        }
+
+        // Clears all text boxes to their default state
+        private void ClearInputs()
+        {
+            txtProject.Clear();
+            txtPhase.Clear();
+            txtWeeklyHours.Clear();
+            txtTotalHours.Clear();
+            txtDescription.Clear();
+        }
+    }
+}
