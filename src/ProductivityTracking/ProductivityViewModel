@@ -1,75 +1,127 @@
+using System.Collections.ObjectModel;
+using System.Data.SQLite;
+using ReactiveUI;
+using System.Reactive;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.OleDb;
 
-namespace ProjectMgmtApp //***************may be changed***************************
+namespace SoftwareProjectManager.ViewModels
 {
-    // This class represents each productivity entry (record)
+    // Data model representing each row in the productivity log
     public class ProductivityEntry
     {
-        public string Project { get; set; }        // Project title/name
-        public string PhaseName { get; set; }      // Phase (e.g., Design, Testing)
-        public int WeeklyHours { get; set; }       // Hours logged this week
-        public int TotalHours { get; set; }        // Total hours logged so far
-        public string Description { get; set; }    // Optional description
+        public string Project { get; set; } = string.Empty;
+        public string PhaseName { get; set; } = string.Empty;
+        public int WeeklyHours { get; set; }
+        public int TotalHours { get; set; }
+        public string Description { get; set; } = string.Empty;
     }
 
-    // This class handles database operations like GET and ADD
-    public class ProductivityViewModel
+    public class ProductivityViewModel : ViewModelBase
     {
-        // Connection string to MS Access database (adjust the file path if needed)
-        private string _connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=ProjectDatabase.accdb;";
+        // Observable list bound to the UI ListBox or DataGrid
+        public ObservableCollection<ProductivityEntry> Entries { get; } = new();
 
-        // Fetches all productivity entries from the database
-        public List<ProductivityEntry> GetAllEntries()
+        // Command to handle the "Add Entry" button click
+        public ReactiveCommand<Unit, Unit> AddEntryCommand { get; }
+
+        // Form fields bound to input controls in the UI
+        private string _project = "";
+        public string Project
         {
-            var entries = new List<ProductivityEntry>();
-
-            // Open database connection and run SELECT query
-            using (OleDbConnection connection = new OleDbConnection(_connectionString))
-            {
-                string query = "SELECT * FROM ProductivityTracking";
-                OleDbCommand cmd = new OleDbCommand(query, connection);
-                connection.Open();
-
-                // Read each row and build the ProductivityEntry list
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    entries.Add(new ProductivityEntry
-                    {
-                        Project = reader["Project"].ToString(),
-                        PhaseName = reader["PhaseName"].ToString(),
-                        WeeklyHours = Convert.ToInt32(reader["WeeklyHours"]),
-                        TotalHours = Convert.ToInt32(reader["TotalHours"]),
-                        Description = reader["Description"].ToString()
-                    });
-                }
-            }
-            return entries; // Return the list of entries
+            get => _project;
+            set => this.RaiseAndSetIfChanged(ref _project, value);
         }
 
-        // Inserts a new productivity entry into the database
-        public void AddEntry(ProductivityEntry entry)
+        private string _phase = "";
+        public string Phase
         {
-            using (OleDbConnection connection = new OleDbConnection(_connectionString))
+            get => _phase;
+            set => this.RaiseAndSetIfChanged(ref _phase, value);
+        }
+
+        private int _weeklyHours;
+        public int WeeklyHours
+        {
+            get => _weeklyHours;
+            set => this.RaiseAndSetIfChanged(ref _weeklyHours, value);
+        }
+
+        private int _totalHours;
+        public int TotalHours
+        {
+            get => _totalHours;
+            set => this.RaiseAndSetIfChanged(ref _totalHours, value);
+        }
+
+        private string _description = "";
+        public string Description
+        {
+            get => _description;
+            set => this.RaiseAndSetIfChanged(ref _description, value);
+        }
+
+        // TEMP: Hardcoded user ID (to be replaced with a real session/shared login ID)
+        private const int FixedUserID = 1;
+
+        // Constructor
+        public ProductivityViewModel()
+        {
+            LoadEntries(); // Load existing rows from DB at startup
+
+            // Define what happens when "Add Entry" is clicked
+            AddEntryCommand = ReactiveCommand.Create(() =>
             {
-                // SQL INSERT command with placeholders (?)
-                string query = "INSERT INTO ProductivityTracking (Project, PhaseName, WeeklyHours, TotalHours, Description) VALUES (?, ?, ?, ?, ?)";
-                OleDbCommand cmd = new OleDbCommand(query, connection);
+                using var conn = new SQLiteConnection("Data Source=projectDB");
+                conn.Open();
 
-                // Bind parameters to avoid SQL injection and insert values properly
-                cmd.Parameters.AddWithValue("?", entry.Project);
-                cmd.Parameters.AddWithValue("?", entry.PhaseName);
-                cmd.Parameters.AddWithValue("?", entry.WeeklyHours);
-                cmd.Parameters.AddWithValue("?", entry.TotalHours);
-                cmd.Parameters.AddWithValue("?", entry.Description);
-
-                // Open connection and execute command
-                connection.Open();
+                // Insert new record into the database
+                using var cmd = new SQLiteCommand("INSERT INTO ProductivityTracking (Project, PhaseName, WeeklyHours, TotalHours, Description, UserID) VALUES (@p, @ph, @wh, @th, @d, @u)", conn);
+                cmd.Parameters.AddWithValue("@p", Project);
+                cmd.Parameters.AddWithValue("@ph", Phase);
+                cmd.Parameters.AddWithValue("@wh", WeeklyHours);
+                cmd.Parameters.AddWithValue("@th", TotalHours);
+                cmd.Parameters.AddWithValue("@d", Description);
+                cmd.Parameters.AddWithValue("@u", FixedUserID);
                 cmd.ExecuteNonQuery();
+
+                // Add it to the observable collection so UI updates immediately
+                Entries.Add(new ProductivityEntry
+                {
+                    Project = Project,
+                    PhaseName = Phase,
+                    WeeklyHours = WeeklyHours,
+                    TotalHours = TotalHours,
+                    Description = Description
+                });
+
+                // Clear form fields
+                Project = Phase = Description = "";
+                WeeklyHours = TotalHours = 0;
+            });
+        }
+
+        // Loads all productivity entries from the DB for the logged-in user
+        private void LoadEntries()
+        {
+            using var conn = new SQLiteConnection("Data Source=projectDB");
+            conn.Open();
+
+            using var cmd = new SQLiteCommand("SELECT Project, PhaseName, WeeklyHours, TotalHours, Description FROM ProductivityTracking WHERE UserID = @uid", conn);
+            cmd.Parameters.AddWithValue("@uid", FixedUserID);
+
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Entries.Add(new ProductivityEntry
+                {
+                    Project = reader.GetString(0),
+                    PhaseName = reader.GetString(1),
+                    WeeklyHours = reader.GetInt32(2),
+                    TotalHours = reader.GetInt32(3),
+                    Description = reader.GetString(4)
+                });
             }
         }
     }
 }
+
